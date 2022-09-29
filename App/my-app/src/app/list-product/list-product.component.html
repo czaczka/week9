@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Units</th>
+        </tr>
+        <tr style="padding-top: 20px;" *ngFor="let products of products">
+            <td>{{products.productID}}</td>
+            <td>{{products.name}}</td>
+            <td>{{products.description}}</td>
+            <td>{{products.price}}</td>
+            <td>{{products.units}}</td>
+            <td><span class="btn btn-primary" [routerLink]="['/update',product._id]"><i class="fa fa-trash"></i>Delete</span></td>
+
+        </tr>
+    </table>
+</div>

@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-// var ObjectID = require('mongodb').ObjectId;
+var ObjectID = require('mongodb').ObjectId;
 const PORT = 3000;
 const express = require('express');
 const app = express();
@@ -8,6 +8,7 @@ const http = require('http').Server(app);
 const server = require('./listen.js');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+// const { ObjectId } = require('mongodb');
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -23,7 +24,11 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err,client) {
     // const collection = db.collection(colName);
     require('./add.js')(db,app);
     require('./getList')(db,app);
-    client.close();
+    require('./delete')(db,app,ObjectID);
+    require('./prodcount')(db,app);
+    require('./validid')(db,app);
+    require('./update.js')(db,app,ObjectID);
+    // client.close();
 });
 
 server.listen(http,PORT);
