@@ -81,7 +81,7 @@ export class AddProductComponent implements OnInit {
       });
     }
   }
-  checkvalidid(event){
+  checkvalidid(event: any){
     this.noticeshow = false
     this.proddata.checkvalidid(event).subscribe((data)=>{
       if (data.success ==0){
