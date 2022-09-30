@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const url = 'mongodb://localhost:27017';
-const dbName = 'mydb';
+const dbName = 'mydb1';
 // const client = new MongoClient(url);
 // const colName = 'products'
 
@@ -28,6 +28,7 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err,client) {
     require('./prodcount')(db,app);
     require('./validid')(db,app);
     require('./update.js')(db,app,ObjectID);
+    
     // client.close();
 });
 

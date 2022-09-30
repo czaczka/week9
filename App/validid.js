@@ -1,5 +1,5 @@
 module.exports = function(db,app){
-    app.post('api/checkvalidid',function(req,res) {
+    app.post('/api/checkvalidid',function(req,res) {
         if (!req.body) {
             return res.sendStatus(400)
         }
@@ -10,6 +10,7 @@ module.exports = function(db,app){
                 res.send({success:1,topnum:0});
             } else {
                 collection.find({}, {sort: {id: -1}, limit: 1}).toArray(function(err,items){
+                    console.log(items);
                     res.send({success:0,topnum:items[0].id});
                 });
             }

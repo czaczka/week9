@@ -38,12 +38,18 @@ import { trigger,state,style,animate,transition } from '@angular/animations';
 export class AddProductComponent implements OnInit {
   productname:string = "";
   productdesc:string = "";
-  productprice:number=null;
-  productunits:number=null;
-  productid:number=null;
+  productprice:number= 0;
+  productunits:number=0;
+  productid:number=0 ;
   productobjid:string = "";
-  newprod:Products;
-  newProductMessage="";
+  newprod:Products =  {
+    productID: 0,
+    name: "",
+    description: "",
+    price: 0,
+    units: 0}
+
+  newProductMessage = "";
   iderrormsg:string = "this id is already in use";
   iderrormsg2:string = "";
   iderrorshow:boolean = false;
@@ -59,12 +65,18 @@ export class AddProductComponent implements OnInit {
   get noticeName(){
     return this.noticeshow ? 'show':'hide';
   }
-  addnewProduct(event){
+  addnewProduct(event:any){
     event.preventDefault();
     if(this.productid ==null){
       this.iderrorshow = !this.iderrorshow;
     } else {
-      this.newprod = new Products("",this.productid,this.productname,this.productdesc,this.productprice,this.productunits);
+      this.newprod.productID = this.productid;
+      this.newprod.description= this.productdesc;
+      this.newprod.name = this.productname;
+      this.newprod.price = this.productprice;
+      this.newprod.units = this.productunits;
+
+       
       this.proddata.add(this.newprod).subscribe((data)=>{
         console.log(data);
         this.noticeshow=true;
@@ -73,11 +85,11 @@ export class AddProductComponent implements OnInit {
         } else{
           this.newProductMessage = data.err;
         }
-        this.productid = null;
-        this.productname="";
+        this.productid = 0;
+        this.productname= "";
         this.productdesc="";
-        this.productprice=null;
-        this.productunits=null;
+        this.productprice=0;
+        this.productunits=0;
       });
     }
   }
@@ -89,7 +101,7 @@ export class AddProductComponent implements OnInit {
         this.iderrorshow = !this.iderrorshow;
       } else{
         this.iderrorshow = false;
-        this.iderrormsg2 = null;
+        this.iderrormsg2 = "";
       }
     })
   }

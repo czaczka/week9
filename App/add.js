@@ -1,12 +1,16 @@
 module.exports = function(db,app) {
-    app.post('/api/add', function(req,res){
+    app.post('/api/add', async function(req,res){
         if (!req.body) {
             return res.sendStatus(400)
         }
         product = req.body;
+        console.log(product);
         const collection = db.collection('products');
 
-        collection.find({'id':product.id}).count((err,count)=>{
+        await collection.find({'productID':product.productID}).toArray(function(err,docs){console.log(docs)})
+
+
+        collection.find({'productID':product.productID}).count((err,count)=>{
             if (count == 0){
                 collection.insertOne(product,(err,dbres)=>{
                     if (err) throw err;

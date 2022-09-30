@@ -4,7 +4,7 @@
             <label for="productid">Product ID</label>
             <input type="number" class="form-control" id="productid" [(ngModel)]="productid" (ngModelChange)="checkvalidid($event)"
             name="productid" placeholder="ID">
-            <div [@iderrorState]="stateName" class="alert alert-warning" id="errormsg" role="alert">{{iderrormsg}} {iderrormsg2}}</div>
+            <div [@iderrorState]="stateName" class="alert alert-warning" id="errormsg" role="alert">{{iderrormsg}} {{iderrormsg2}}</div>
         </div>
         <div class="form-group">
             <label for="productid">Product Name</label>
