@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <table class="table">
         <tr>
             <th>ID</th>
@@ -12,25 +12,25 @@
                 <form (submit)="update($event)">
                     <div class="form-group"><td>
                         <label for="productid">Product ID</label>
-                        <input type="number" class="form-control" id="productid" [(ngModel)]="productid" 
-                        name="productid" placeholder="{{productid}}">
+                        <input type="number" class="form-control" id="productid" [(ngModel)]="products.productID" 
+                        name="productid" placeholder="{{products.productID}}">
                     </td></div>
                     <div class="form-group"><td>
                         <label for="productid">Product Name</label>
-                        <input type="text" class="form-control" id="productname" [(ngModel)]="productname" name="productname" placeholder="{{productname}}">
+                        <input type="text" class="form-control" id="productname" [(ngModel)]="products.name" name="productname" placeholder="{{products.name}}">
                     </td></div>
                     <div class="form-group"><td>
                         <label for="productid">Description</label>
-                        <textarea class="form-control" id="productdesc" [(ngModel)]="productdesc" name="productdesc" placeholder="{{productdesc}}"></textarea>
+                        <textarea class="form-control" id="productdesc" [(ngModel)]="products.description" name="productdesc" placeholder="{{products.description}}"></textarea>
             
                     </td></div>
                     <div class="form-group"><td>
                         <label for="productid">Price</label>
-                        <input type="number" class="form-control" id="productprice" [(ngModel)]="productprice" name="productprice" placeholder="{{productprice}}">
+                        <input type="number" class="form-control" id="productprice" [(ngModel)]="products.price" name="productprice" placeholder="{{products.price}}">
                     </td></div>
                     <div class="form-group"><td>
                         <label for="productid">Units</label>
-                        <input type="number" class="form-control" id="productunits" [(ngModel)]="productunits" name="productunits" placeholder="{{productunits}}">
+                        <input type="number" class="form-control" id="productunits" [(ngModel)]="products.units" name="productunits" placeholder="{{products.units}}">
                     </td></div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square">update</i></button>
@@ -43,4 +43,56 @@
         </tr>
     </table>
 </div>
+ 
+ 
+ -->
+
+ <div class="container">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Units</th>
+        </tr>
+        <tr style="padding-top: 20px;" *ngFor="let product of products">
+            <div class="container">
+                <form (submit)="update($event)">
+                    <div class="form-group"><td>
+                        <label for="productID">Product ID</label>
+                        <input type="number" class="form-control" id="productid" [(ngModel)]="product.productID" 
+                        name="productid" placeholder="{{product.productID}}">
+                    </td></div>
+                    <div class="form-group"><td>
+                        <label for="productID">Product Name</label>
+                        <input type="text" class="form-control" id="productname" [(ngModel)]="product.name" name="productname" placeholder="{{product.name}}">
+                    </td></div>
+                    <div class="form-group"><td>
+                        <label for="productID">Description</label>
+                        <textarea class="form-control" id="productdesc" [(ngModel)]="product.description" name="productdesc" placeholder="{{product.description}}"></textarea>
+            
+                    </td></div>
+                    <div class="form-group"><td>
+                        <label for="productID">Price</label>
+                        <input type="number" class="form-control" id="productprice" [(ngModel)]="product.price" name="productprice" placeholder="{{product.price}}">
+                    </td></div>
+                    <div class="form-group"><td>
+                        <label for="productID">Units</label>
+                        <input type="number" class="form-control" id="productunits" [(ngModel)]="product.units" name="productunits" placeholder="{{product.units}}">
+                    </td></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square">update</i></button>
+                    </div>
+                </form>
+                <button (click)="update2(product)">Submit2</button>
+            </div>
+            
+           
+
+        </tr>
+    </table>
+</div>
+ 
+ 
 

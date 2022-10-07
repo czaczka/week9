@@ -11,24 +11,15 @@ import { Router } from '@angular/router';
 export class UpdateProductComponent implements OnInit {
   products: Products[] = [];
   
-  productname:string = "";
-  productdesc:string = "";
-  productprice:number= 0;
-  productunits:number=0;
-  productid:number=0 ;
-  productobjid:string = "";
-  product:Products =  {
-    productID: 0,
-    name: "",
-    description: "",
-    price: 0,
-    units: 0}
+  
   prod = (localStorage.getItem('product.id'));
+  
   
 
   constructor(private proddata:ProddataService,private router:Router) { }
 
   ngOnInit(): void {
+    console.log(this.prod);
     this.proddata.getitem(this.prod).subscribe((data)=>{
       console.log(data);
       this.products = data;
@@ -36,8 +27,20 @@ export class UpdateProductComponent implements OnInit {
   }
 
   update(event: any) {
+    event.preventDefault();
+
     this.proddata.updateitem(event).subscribe(data =>{
-      console.log(data);
+      console.log("posting"+data);
+      this.router.navigate(['']);
+    })
+  }
+
+  update2(prod:any) {
+    console.log(prod);
+  
+    
+    this.proddata.updateitem(prod).subscribe(data =>{
+      console.log("posting"+data);
       this.router.navigate(['']);
     })
   }

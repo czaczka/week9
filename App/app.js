@@ -28,9 +28,10 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err,client) {
     require('./prodcount')(db,app);
     require('./validid')(db,app);
     require('./update.js')(db,app,ObjectID);
-    require('./getItem.js')(db,app);
+    require('./getItem')(db,app);
+
+    server.listen(http,PORT);
     
     // client.close();
 });
 
-server.listen(http,PORT);

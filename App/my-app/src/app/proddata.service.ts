@@ -19,7 +19,10 @@ export class ProddataService {
     return this.http.post<any>('http://localhost:3000/api/getitem', {'productid':productID} );
   }
   updateitem(product:Products){
+    console.log("update working");
+    console.log(product);
     return this.http.post<any>('http://localhost:3000/api/update', product );
+
   }
   deleteitem(productID: any) {
     return this.http.post<any>('http://localhost:3000/api/deleteitem', {'productid':productID} );

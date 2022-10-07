@@ -5,11 +5,11 @@ module.exports = function(db,app,ObjectID) {
             return res.sendStatus(400)
         }
         product = req.body;
-        console.log(product);
+        console.log("product"+product);
 
        let objectid = product.productID;
         const collection = db.collection('products');
-        collection.updateOne({productID:objectid},{$set:{name:product.name,description:product.description,price:prodcut.price,units:product.units}},()=>{
+        collection.updateOne({productID:objectid},{$set:{name:product.name,description:product.description,price:product.price,units:product.units}},()=>{
             res.send({'ok':objectid});
         })
     })
