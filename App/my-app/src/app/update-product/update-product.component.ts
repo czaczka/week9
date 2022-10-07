@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UpdateProductComponent implements OnInit {
   products: Products[] = [];
-
+  
   productname:string = "";
   productdesc:string = "";
   productprice:number= 0;
@@ -23,41 +23,26 @@ export class UpdateProductComponent implements OnInit {
     description: "",
     price: 0,
     units: 0}
+  prod = (localStorage.getItem('product.id'));
+  
+
   constructor(private proddata:ProddataService,private router:Router) { }
 
   ngOnInit(): void {
-    this.proddata.getlist().subscribe((data)=>{
+    this.proddata.getitem(this.prod).subscribe((data)=>{
+      console.log(data);
       this.products = data;
     })
   }
-  deleteproduct(id: any) {
-    if (confirm("are you sure you want to delete this item")){
-      this.proddata.deleteitem(id).subscribe((data)=>{
-        this.products = data;
-      })
-    }
-  }
-  update(event:any){
-    event.preventDefault();
-    if(this.productid ==null){
-      console.log("error");
-    } else {
-      this.product.productID = this.productid;
-      this.product.description= this.productdesc;
-      this.product.name = this.productname;
-      this.product.price = this.productprice;
-      this.product.units = this.productunits;
 
-       
-      this.proddata.updateitem(this.product).subscribe((data)=>{
-        console.log(data);
-        this.productid = 0;
-        this.productname= "";
-        this.productdesc="";
-        this.productprice=0;
-        this.productunits=0;
-      });
-    }
+  update(event: any) {
+    this.proddata.updateitem(event).subscribe(data =>{
+      console.log(data);
+      this.router.navigate(['']);
+    })
   }
 
+  
+  
 }
+

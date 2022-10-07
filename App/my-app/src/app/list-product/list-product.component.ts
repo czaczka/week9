@@ -25,5 +25,11 @@ export class ListProductComponent implements OnInit {
       })
     }
   }
+  update(id: any) {
+    localStorage.removeItem(id);
+    localStorage.setItem('product.id', id);
+
+    this.router.navigateByUrl("/update");
+  }
 
 }
